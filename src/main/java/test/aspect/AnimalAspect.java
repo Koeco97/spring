@@ -28,7 +28,7 @@ public class AnimalAspect {
     public void eatPoint() {
     }
 
-    @Pointcut("execution(* test.Animal.getPossibleFeedTypes(..))")
+    @Pointcut("execution(* test.Animal.canEat(..))")
     public void foodTypePoint() {
     }
 
@@ -69,15 +69,14 @@ public class AnimalAspect {
     //пробуем выполнить метод eat c аргументом food для текущего класса.
     // Если метод выполняется пишем класс + " eat success" и класс + " end eat"
     //Если метод не выполняется, пишем класс + " eat failed: " +
-    @Around(value = "eatPoint() && args(food) ")
+    @Around(value = "eatPoint() && args(food)")
     public Object eatAround(ProceedingJoinPoint proceedingJoinPoint, Food food) throws Throwable {
         String target = proceedingJoinPoint.getTarget().getClass().toString();
-        if (LocalDateTime.now().isAfter(food.getExpirationDate())){
+        Animal animal = (Animal) proceedingJoinPoint.getTarget();
+        if (LocalDateTime.now().isAfter(food.getExpirationDate())) {
             return false;
         }
-       /* List possibleFood = animal.getPossibleFeedTypes();
-        if (possibleFood.contains(food)) {
-            System.out.println(target + " start eat");*/
+        if (animal.getPossibleFeedTypes().contains(food.getFoodName())) {
             try {
                 Object result = proceedingJoinPoint.proceed();
                 System.out.println(target + " eat success");
@@ -88,6 +87,9 @@ public class AnimalAspect {
                 throw e;
             }
         }
+        else
+            return false;
+    }
 
 
    /* @Around(value = "eatPoint() && args(food) && fishPoint()")
@@ -98,12 +100,5 @@ public class AnimalAspect {
             return eatAround(proceedingJoinPoint, food);
         }
     }*/
-    @Around(value = "foodTypePoint() && args(animal) && args(food)", argNames = "proceedingJoinPoint,animal,food")
-    public Object validateEat(ProceedingJoinPoint proceedingJoinPoint, Animal animal, Food food) throws Throwable {
-       List possibleFood = animal.getPossibleFeedTypes();
-       if (possibleFood.contains(food))
-           return true;
-       else
-           return false;
+
     }
-}

@@ -12,4 +12,6 @@ public interface Animal {
     boolean isHungry();
 
     List<FoodType> getPossibleFeedTypes();
+
+    boolean canEat(Animal animal, Food food);
 }
