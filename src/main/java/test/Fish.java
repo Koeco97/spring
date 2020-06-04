@@ -3,9 +3,12 @@ package test;
 import org.springframework.stereotype.Component;
 import test.dto.Food;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class Fish implements Animal {
-    private boolean angry = true;
+    private boolean hungry = true;
 
     @Override
     public void voice() {
@@ -13,12 +16,19 @@ public class Fish implements Animal {
 
     @Override
     public boolean eat(Food food) {
-        angry = false;
-        return isAngry();
+        hungry = false;
+        return isHungry();
     }
 
     @Override
-    public boolean isAngry() {
-        return angry;
+    public boolean isHungry() {
+        return hungry;
+    }
+
+    @Override
+    public List<FoodType> getPossibleFeedTypes() {
+        List <FoodType> possibleFood = new ArrayList<>();
+        possibleFood.add(FoodType.PLANKTON);
+        return possibleFood;
     }
 }

@@ -1,21 +1,18 @@
 package test;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import test.dto.Food;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
-
 @Component
-@Scope(value = SCOPE_PROTOTYPE)
-public class Dog implements Animal {
+public class Snake implements Animal{
     private boolean hungry = true;
 
+    @Override
     public void voice() {
-        System.out.println("gav");
+        System.out.println("sss");
     }
 
     @Override
@@ -26,13 +23,13 @@ public class Dog implements Animal {
 
     @Override
     public boolean isHungry() {
-        return false;
+        return hungry;
     }
 
     @Override
     public List<FoodType> getPossibleFeedTypes() {
         List <FoodType> possibleFood = new ArrayList<>();
-        possibleFood.add(FoodType.MEAT);
+        possibleFood.add(FoodType.MOUSE);
         return possibleFood;
     }
 }

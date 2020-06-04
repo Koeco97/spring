@@ -1,12 +1,13 @@
 package test.dto;
-
+import test.FoodType;
 import java.time.LocalDateTime;
 
+
 public class Food {
-    private String foodName;
+    private FoodType foodName;
     private LocalDateTime expirationDate;
 
-    public String getFoodName() {
+    public FoodType getFoodName() {
         return foodName;
     }
 
@@ -14,7 +15,7 @@ public class Food {
         return expirationDate;
     }
 
-    public void setFoodName(String foodName) {
+    public void setFoodName(FoodType foodName) {
         this.foodName = foodName;
     }
 

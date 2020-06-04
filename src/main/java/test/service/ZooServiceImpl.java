@@ -20,11 +20,11 @@ public class ZooServiceImpl implements ZooService {
 
     @Override
     public void feed(Food food) {
-        List<Animal> angryAnimals = zoo.getAnimals()
+        List<Animal> hungryAnimals = zoo.getAnimals()
                 .stream()
                 .peek(animal -> animal.eat(food))
-                .filter(Animal::isAngry)
+                .filter(Animal::isHungry)
                 .collect(Collectors.toList());
-        System.out.println(angryAnimals);
+        System.out.println(hungryAnimals);
     }
 }
