@@ -8,7 +8,6 @@ import java.util.List;
 
 @Component
 public class Fish implements Animal {
-    private List possibleFood = getPossibleFeedTypes();
     private boolean hungry = true;
 
     @Override
@@ -31,10 +30,5 @@ public class Fish implements Animal {
         List <FoodType> possibleFood = new ArrayList<>();
         possibleFood.add(FoodType.PLANKTON);
         return possibleFood;
-    }
-
-    @Override
-    public boolean canEat (Animal animal, Food food){
-        return animal.getPossibleFeedTypes().contains(food.getFoodName());
     }
 }

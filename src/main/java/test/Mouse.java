@@ -9,7 +9,6 @@ import java.util.List;
 @Component
 public class Mouse implements Animal {
     private boolean hungry = true;
-    private List possibleFood = getPossibleFeedTypes();
 
     @Override
     public void voice() {
@@ -33,10 +32,5 @@ public class Mouse implements Animal {
         possibleFood.add(FoodType.CORN);
         return possibleFood;
 
-    }
-
-    @Override
-    public boolean canEat (Animal animal, Food food){
-        return animal.getPossibleFeedTypes().contains(food.getFoodName());
     }
 }

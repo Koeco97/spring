@@ -13,7 +13,6 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
 @Scope(value = SCOPE_PROTOTYPE)
 public class Dog implements Animal {
     private boolean hungry = true;
-    private List possibleFood = getPossibleFeedTypes();
 
     public void voice() {
         System.out.println("gav");
@@ -37,8 +36,4 @@ public class Dog implements Animal {
         return possibleFood;
     }
 
-    @Override
-    public boolean canEat (Animal animal, Food food){
-        return animal.getPossibleFeedTypes().contains(food.getFoodName());
-    }
 }
