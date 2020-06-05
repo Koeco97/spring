@@ -23,9 +23,10 @@ public class Main {
     public static void feedAnimal(ApplicationContext context) {
         ZooService service = context.getBean(ZooService.class);
         Food food = new Food();
-        food.setFoodName(FoodType.FISH);
+        food.setFoodName(FoodType.MEAT);
         food.setExpirationDate(LocalDateTime.now().plusHours(6));
         service.feed(food);
+        service.feedAllHungry();
     }
 
     public static ApplicationContext getAnnotationContext() {
