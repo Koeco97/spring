@@ -4,5 +4,4 @@ import test.dto.Food;
 
 public interface ZooService {
     void feed(Food food);
-    void feedAllHungry();
 }
